@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>YUI Test</title>
+</head>
+<body>
+	<div id="content">
+	</div>
+	<script type="text/x-handlebars-template" id="user-form">
+		<form class="userForm">
+			<p>Add user</p>
+			<input type="text" id="username" placeholder="Username" autofocus>
+			<input type="paswword" id="password" placeholder="Password">
+			<input type="text" id="name" placeholder="Name">
+			<input type="text" id="email" placeholder="Email">
+			<input type="submit" value="Save">
+		</form>
+	</script>
+	<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-min.js"></script>
+	<script type="text/javascript">
+		YUI({
+			filter: 'raw',
+			groups: {
+				'yui-test': {
+					base: './js/',
+					modules: {
+						'user-form-view': {
+							path: 'views/user/formView.js',
+							requires: ['view', 'handlebars', 'node-base']
+						},
+						'yui-app': {
+							path: 'app.js',
+							requires: ['app', 'user-form-view']
+						}
+					}
+				}
+			}
+		}).use('yui-app', function (Y) {
+			var app = new Y.YuiTest.YuiApp();
+		});
+	</script>
+</body>
+</html>
